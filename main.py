@@ -2,7 +2,7 @@
 name: main.py
 date: 2025-12-08
 author: githubonline1396529
-description: The main function. Entrance of the programme.
+description: The main function. Entrance of the programme. No other logic here.
 """
 
 from cli import main
