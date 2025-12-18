@@ -40,13 +40,13 @@ Author: githubonline1396529. Current version 0.1.0.0.
 
 class Color:
     """ANSI color code class.
-    
+
     This class provides ANSI escape codes for colored output in the terminal.
-    Each color is represented as a class variable, and can be used to format 
+    Each color is represented as a class variable, and can be used to format
     strings.
-    
+
     Examples:
-    
+
       >>> print(f"{Color.RED}This text is red{Color.END}")
     """
 
@@ -71,7 +71,7 @@ def colored_yao(coins: tuple, value: int, changing: bool) -> str:
     Returns:
         str: The colored Yao string.
     """
-    
+
     sum_coins = sum(coins)
 
     if sum_coins == 0:  # Three 0 -> old Yin.

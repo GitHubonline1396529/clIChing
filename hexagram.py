@@ -5,6 +5,7 @@ author: githubonline1396529
 description: Hexagram generation and manipulation for I Ching divination.
 """
 
+# Import necessary modules.
 import random
 from pathlib import Path
 from dataclasses import dataclass
@@ -33,12 +34,12 @@ class Yao:
 
 class Hexagram:
     def __init__(self, yaos: List[Yao]):
-        self.yaos = yaos # List of six Yao objects, from First Yao to Top Yao.
+        self.yaos = yaos  # List of six Yao objects, from First Yao to Top Yao.
         self._calculate_hexagram()
 
     def _calculate_hexagram(self):
         """Calculate the hexagram number and binary representation."""
-        # Calculate number: First Yao is the least significant bit, Top Yao is 
+        # Calculate number: First Yao is the least significant bit, Top Yao is
         # the most significant bit
         self.original_number = 0
         # i from 0 to 5, corresponding to First Yao to Top Yao.
@@ -73,14 +74,14 @@ class Hexagram:
                 # Changing Yao: Old Yin changes to Young Yang, Old Yang changes
                 # to Young Yin. Then exchange Yin and Yang.
                 new_value = 1 if yao.value == 0 else 0
-                # Generate new coin results (consistent with the changed 
+                # Generate new coin results (consistent with the changed
                 # Yin/Yang)
                 if new_value == 0:  # Change to Young Yin
                     new_coins = (0, 1, 1)  # Two 1s and one 0
                 else:  # Change to Young Yang
                     new_coins = (1, 0, 0)  # Two 0s and one 1
-                new_changing = False  
-                # After change, it becomes Young Yin/Young Yang, no longer 
+                new_changing = False
+                # After change, it becomes Young Yin/Young Yang, no longer
                 # changeable.
             else:
                 # Unchanged Yao
@@ -104,7 +105,10 @@ class Hexagram:
                 return filepath.read_text(encoding="utf-8")
             except:
                 return filepath.read_text(encoding="gbk")
-        return f"Hexagram interpretation file {hexagram_number:02d}.txt not found."
+        return (  # The string is warped here for better readability (80 cols).
+            f"Hexagram interpretation file {hexagram_number:02d}.txt not "
+            "found."
+        )
 
     def display_interpretation(self):
         """Display the hexagram interpretation."""

@@ -20,7 +20,7 @@ class DivinationTable:
 
     def __init__(self, no_color=False):
         """Initialize the divination table.
-        
+
         Args:
             no_color (bool): If True, disable colored output.
         """
@@ -57,9 +57,9 @@ class DivinationTable:
 
     def process_command(self, command):
         """Process user command.
-        
+
         This function processes the user command input in the divination table.
-        
+
         Args:
             command (str): The command input by the user.
         """
@@ -93,12 +93,12 @@ class DivinationTable:
 
     def get_hexagram(self):
         """Get a new original hexagram.
-        
+
         This function generates a new original hexagram, resets the changed
         hexagram to None, and displays the new hexagram along with its
         interpretation.
         """
-        
+
         self.original_hexagram = generate_hexagram()
         self.changed_hexagram = None  # Reset changed hexagram to be None.
 
@@ -163,44 +163,46 @@ class DivinationTable:
 
             print(f"Changing positions: {changing_positions}")
 
-            # 生成变卦
+            # Generate changing hexagram.
             self.changed_hexagram = (
                 self.original_hexagram.get_changing_hexagram(changing_positions)
             )
 
-            print("\n=== 变卦 ===")
+            print("\nChanging Hexagram:")
             self.changed_hexagram.display(colored=not self.no_color)
 
-            print("\n=== 变卦卦辞 ===")
+            print("\nChanging Hexagram Interpretation:")
             self.changed_hexagram.display_interpretation()
 
         except Exception as e:
-            print(f"解析错误: {e}")
-            print("正确用法: c 1,3,5 或 change 2 4 6")
+            print(f"Parsing error: {e}")
+            print("Correct usage: c 1,3,5 or change 2 4 6")
 
     def show_help(self):
-        """显示帮助信息"""
+        """Display help information"""
         print(HELP_MESSAGE)
 
     def show_current(self):
-        """显示当前卦象"""
+        """Display current hexagrams"""
         if not self.original_hexagram:
-            print("暂无卦象，使用 'g' 获取一个本卦")
+            print(
+                "No hexagram available. Use 'g' to generate an original hexagram."
+            )
             return
 
-        print("\n=== 当前卦象 ===")
-        print("\n本卦:")
+        print("\nCurrent Hexagrams:")
+        print("\nOriginal Hexagram:")
         self.original_hexagram.display(colored=not self.no_color)
 
         if self.changed_hexagram:
-            print("\n变卦:")
+            print("\nChanging Hexagram:")
             self.changed_hexagram.display(colored=not self.no_color)
 
     def reset_table(self):
-        """重置卦盘"""
+        """Reset the divination table"""
         self.original_hexagram = None
         self.changed_hexagram = None
-        print("卦盘已清空")
+        print("Divination table has been cleared.")
 
 
 def main():
@@ -220,10 +222,10 @@ def main():
     # Create the interactive divination table.
     table = DivinationTable(no_color=args.no_color)
 
-    # 如果有问题参数，直接显示
+    # If there is a question argument, display it directly.
     if args.question:
-        print(f"问题: {args.question}")
+        print(f"Question: {args.question}")
         print("-" * 40)
 
-    # 运行交互式卦盘
+    # Run the interactive divination table.
     table.run()
